@@ -54,7 +54,7 @@ const getApp = () => {
                 status: RESPONSE.ERROR,
                 message: initialError || "Internal server error",
                 data: null,
-                stack: error.stack,
+                stack: error.stack
             }])
         }
         

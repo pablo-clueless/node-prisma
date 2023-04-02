@@ -3,9 +3,7 @@ import jwt, { JwtPayload } from "jsonwebtoken"
 import KEYS from "../config/keys"
 
 const sign = (id: string) => {
-    return jwt.sign(id, KEYS.JWT_SECRET, {
-        expiresIn: KEYS.EXPIRES_IN,
-    })
+    return jwt.sign(id, KEYS.JWT_SECRET)
 }
 
 const verify = (token: string) => {

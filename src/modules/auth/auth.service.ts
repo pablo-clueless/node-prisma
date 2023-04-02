@@ -7,8 +7,7 @@ import axios from "axios"
 
 import { Auth0SigninDto, EmailSigninDto, EmailSignupDto } from "./auth.dto"
 import { DataResponse } from "../../common/helpers/data-response"
-import { decode, sign } from "../../common/helpers/token"
-import uploader from "../../common/helpers/cloudinary"
+import { sign } from "../../common/helpers/token"
 import Email from "../../common/helpers/email"
 import KEYS from "../../common/config/keys"
 
@@ -45,11 +44,12 @@ const EmailSignin = async(data: EmailSigninDto) => {
             }
             return response
         }
+        const {password: _, ...safeuser} = user
         const token = sign(user.id)
         response = {
             error: false,
             message: "Signin successful",
-            data: { user, token}
+            data: { safeuser, token}
         }
         return response
     } catch (error:any) {
@@ -64,7 +64,7 @@ const EmailSignin = async(data: EmailSigninDto) => {
 
 const EmailSignup = async(data: EmailSignupDto) => {
     try {
-        const {email, fullName, password, username, avatar} = data
+        const {email, fullName, password, username} = data
         let response:DataResponse
         if(!fullName || !username || !email || !password) {
             response = {
@@ -100,16 +100,14 @@ const EmailSignup = async(data: EmailSignupDto) => {
             }
             return response
         }
-        const imageUrl:string = avatar ? await uploader(avatar, "user-avatar") : ""
         const saltRounds = await bcrypt.genSalt(10)
         const hashedPassword = await bcrypt.hash(password, saltRounds)
         const user = await prisma.user.create({
             data: {
-                id: uuidv4(),
                 email,
                 fullName,
                 username,
-                avatar: imageUrl,
+                avatar: "",
                 password: hashedPassword,
             }
         })
@@ -168,7 +166,6 @@ const GoogleSignin = async(data: Auth0SigninDto) => {
         }
         const newUser = await prisma.user.create({
             data: {
-                id: uuidv4(),
                 email: payload.email,
                 fullName: payload.name,
                 username: payload.email,
@@ -222,7 +219,6 @@ const GithubSignin = async(data: Auth0SigninDto) => {
         }
         const newUser = await  prisma.user.create({
             data: {
-                id: uuidv4(),
                 email: email,
                 fullName: name,
                 username: login,

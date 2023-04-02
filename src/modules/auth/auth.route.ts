@@ -1,7 +1,6 @@
 import { Router } from "express"
 
 import { authorizeLogin } from "../../common/middlewares/auth"
-import upload from "../../common/utils/upload"
 import {
     emailSigninController,
     emailSignupController,
@@ -19,7 +18,6 @@ router.post(
 
 router.post(
     "/signup",
-    upload.single("avatar"),
     emailSignupController
 )
 

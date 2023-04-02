@@ -6,7 +6,6 @@ const requiredServerEnvs = [
     "CLOUD_NAME",
     "CLOUD_SECRET",
     "DATABASE_URL",
-    "EXPIRES_IN",
     "GITHUB_ID",
     "GITHUB_SECRET",
     "JWT_SECRET",

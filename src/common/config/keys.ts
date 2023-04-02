@@ -10,7 +10,6 @@ const KEYS = {
     CLOUD_NAME: process.env.CLOUD_NAME,
     CLOUD_SECRET: process.env.CLOUD_SECRET,
     DATABASE_URL: process.env.DATABASE_URL,
-    EXPIRES_IN: process.env.EXPIRES_IN,
     GITHUB_ID: process.env.GITHUB_ID,
     GITHUB_SECRET: process.env.GITHUB_SECRET,
     JWT_SECRET: process.env.JWT_SECRET,

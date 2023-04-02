@@ -9,7 +9,6 @@ export interface EmailSignupDto {
     username: string
     email: string
     password: string
-    avatar?: Express.Multer.File
 }
 
 export interface Auth0SigninDto {

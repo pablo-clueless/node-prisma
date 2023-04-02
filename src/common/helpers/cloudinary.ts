@@ -1,10 +1,10 @@
 import cloudinary from "../config/cloudinary"
 
-const uploader = async(file:any, folder:string) => {
+const uploader = async(file: string) => {
     const { secure_url } = await cloudinary.uploader.upload(file, {
-        folder,
+        folder: "prisma",
         transformation: [
-            {  width: 350, height: 300, crop: 'scale' },
+            {  width: 350, height: 350, crop: 'scale' },
             { fetch_format: 'webp' }
         ]
     })

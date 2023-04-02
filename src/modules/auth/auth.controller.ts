@@ -37,8 +37,7 @@ const emailSignupController = async(req:ExtendedRequest, res:Response, next: Nex
             email: req.body.email,
             fullName: req.body.fullName,
             password: req.body.password,
-            username: req.body.username,
-            avatar: req.file,
+            username: req.body.username
         }
         const {error, message, data}:DataResponse = await EmailSignup(payload)
         if(error) {
