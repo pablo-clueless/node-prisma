@@ -10,7 +10,7 @@
     "migration": "npx prisma db push",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
     "build": "rimraf dist && npx tsc",
-    "prestart": "npx prisma generate --omit=dev",
+    "prestart": "npx prisma db push",
     "start": "node dist/index.js"
   },
   "keywords": [
@@ -22,6 +22,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.3.4",
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.35.0",
     "connect-mongo": "^5.0.0",
@@ -29,13 +30,16 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "google-auth-library": "^8.7.0",
     "jsonwebtoken": "^9.0.0",
     "mongodb": "^5.1.0",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.1",
     "nodemon": "^2.0.22",
-    "socket.io": "^4.6.1"
+    "socket.io": "^4.6.1",
+    "uuid": "^9.0.0",
+    "validator": "^13.9.0"
   },
   "devDependencies": {
     "@prisma/client": "^4.12.0",
@@ -47,6 +51,8 @@
     "@types/multer": "^1.4.7",
     "@types/node": "^18.15.11",
     "@types/nodemailer": "^6.4.7",
+    "@types/uuid": "^9.0.1",
+    "@types/validator": "^13.7.14",
     "concurrently": "^8.0.1",
     "rimraf": "^4.4.1",
     "ts-node": "^10.9.1",

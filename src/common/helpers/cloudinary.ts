@@ -1,6 +1,6 @@
 import cloudinary from "../config/cloudinary"
 
-const uploader = async(file: string, folder: string) => {
+const uploader = async(file:any, folder:string) => {
     const { secure_url } = await cloudinary.uploader.upload(file, {
         folder,
         transformation: [

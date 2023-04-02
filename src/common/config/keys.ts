@@ -11,6 +11,8 @@ const KEYS = {
     CLOUD_SECRET: process.env.CLOUD_SECRET,
     DATABASE_URL: process.env.DATABASE_URL,
     EXPIRES_IN: process.env.EXPIRES_IN,
+    GITHUB_ID: process.env.GITHUB_ID,
+    GITHUB_SECRET: process.env.GITHUB_SECRET,
     JWT_SECRET: process.env.JWT_SECRET,
     NODE_ENV: process.env.NODE_ENV,
     PORT: process.env.PORT,
