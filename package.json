@@ -9,7 +9,8 @@
     "generate": "npx prisma generate",
     "migration": "npx prisma db push",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
-    "build": "rimraf dist && npx tsc && generate",
+    "build": "rimraf dist && npx tsc",
+    "prestart": "npx prisma generate --omit=dev",
     "start": "node dist/index.js"
   },
   "keywords": [
