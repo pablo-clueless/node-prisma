@@ -79,7 +79,6 @@ const getApp = () => {
         res.send({message: "Welcome to Prisma-Node"})
     })
 
-    app.use("/favicon.ico", express.static(""))
     app.use(apiUrl, apiRouter)
 
     return app
