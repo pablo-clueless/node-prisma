@@ -2,7 +2,7 @@ import { MailOptions, SentMessageInfo } from "nodemailer/lib/sendmail-transport"
 import { createTransport } from "nodemailer"
 import Mail from "nodemailer/lib/mailer"
 
-import KEYS from "@/common/config/keys"
+import KEYS from "../config/keys"
 
 const main = async() => {
     const transport:Mail = createTransport({

@@ -1,4 +1,3 @@
-import { Document, Model, ObjectId } from "mongoose"
 import { JwtPayload } from "jsonwebtoken"
 import { Request } from "express"
 
@@ -7,8 +6,8 @@ export interface User {
     username: string
     email: string
     fullName: string
-    avatar: string
-    posts: Post[]
+    avatar?: string
+    posts?: Post[]
 }
 
 export interface Post {
@@ -20,7 +19,7 @@ export interface Post {
 }
 
 export interface ExtendedRequest extends Request {
-    user?: Document
+    user?: User
     token?: string
 }
 
