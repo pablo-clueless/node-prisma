@@ -3,7 +3,6 @@ import morgan from "morgan"
 import multer from "multer"
 import cors from "cors"
 
-import "."
 import sessionMiddleware from "./common/middlewares/session"
 import RESPONSE from "./common/helpers/response-message"
 import createError from "./common/helpers/create-error"
@@ -80,6 +79,7 @@ const getApp = () => {
         res.send({message: "Welcome to Prisma-Node"})
     })
 
+    app.use("/favicon.ico", express.static(""))
     app.use(apiUrl, apiRouter)
 
     return app
