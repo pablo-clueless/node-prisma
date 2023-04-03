@@ -3,7 +3,6 @@ import dotenv from "dotenv"
 
 import { DataResponse } from "../../common/helpers/data-response"
 import uploader from "../../common/helpers/cloudinary"
-import { User } from "@prisma/client"
 import { UserDto } from "./user.dto"
 
 dotenv.config()
@@ -13,7 +12,7 @@ const GetAllUsers = async() => {
     try {
         await prisma.$connect()
         const users = await prisma.user.findMany()
-        const safeusers = users.map((user: User) => {
+        const safeusers = users.map((user: any) => {
             const {password: _, ...safeuser} = user
             return safeuser
         })
