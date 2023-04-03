@@ -1,5 +1,4 @@
 import { PrismaClient } from "@prisma/client"
-import { v4 as uuidv4 } from "uuid"
 import validator from "validator"
 import bcrypt from "bcrypt"
 import dotenv from "dotenv"
@@ -131,6 +130,13 @@ const GoogleSignin = async(data: Auth0SigninDto) => {
     try {
         const { token } = data
         let response:DataResponse
+        if(!token) {
+            response = {
+                error: true,
+                message: "Please provide a token!"
+            }
+            return response
+        }
         const res = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
             headers: { "Authorization": "bearer " + token}
         })
@@ -194,6 +200,13 @@ const GithubSignin = async(data: Auth0SigninDto) => {
     try {
         const { token } = data
         let response:DataResponse
+        if(!token) {
+            response = {
+                error: true,
+                message: "Please provide a token!"
+            }
+            return response
+        }
         const res = await axios.post("https://github.com/login/oauth/access_token", {
             code: token,
             client_id: KEYS.GITHUB_ID,
