@@ -1,6 +1,8 @@
 import { JwtPayload } from "jsonwebtoken"
+import { User } from "@prisma/client"
 import { Request } from "express"
-export interface User {
+
+export interface IUser {
     id: string
     username: string
     email: string
@@ -11,19 +13,24 @@ export interface User {
 
 export interface IPost {
     id: string
-    author: User
+    author: IUser
     authorId: string
     title: string
     content: string
 }
 
-export interface Comment{
+export interface IComment{
     id: string
 }
 
 export interface ExtendedRequest extends Request {
     user?: User
     token?: string
+}
+
+export interface Paginate {
+    limit: number | 10
+    page: number
 }
 
 export interface SocketData {}

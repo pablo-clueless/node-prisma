@@ -1,10 +1,13 @@
 import { PrismaClient } from "@prisma/client"
 import dotenv from "dotenv"
 
+import { getPaginateRecords } from "../../common/helpers/pagination"
 import { DataResponse } from "../../common/helpers/data-response"
 import { CreatePostDto, GetPostDto } from "./post.dto"
 import uploader from "../../common/helpers/cloudinary"
+import { Paginate } from "../../common/interfaces"
 
+dotenv.config()
 const prisma = new PrismaClient()
 
 const CreatePost = async(data:CreatePostDto) => {
@@ -31,6 +34,7 @@ const CreatePost = async(data:CreatePostDto) => {
                 content,
                 title,
                 authorId: user.id,
+                image: imageurl
             }
         })
         if(!post) {
@@ -56,14 +60,14 @@ const CreatePost = async(data:CreatePostDto) => {
     }
 }
 
-const GetAllPost = async() => {
+const GetAllPost = async(data:Paginate) => {
     try {
         await prisma.$connect()
-        const posts = await prisma.post.findMany()
+        const paginated = await getPaginateRecords(data)
         let response:DataResponse = {
             error: false,
             message: "All posts retreieved!",
-            data: posts
+            data: paginated
         }
         return response
     } catch (error:any) {
