@@ -1,4 +1,4 @@
-import { PrismaClient, User } from "@prisma/client"
+import { PrismaClient } from "@prisma/client"
 import dotenv from "dotenv"
 
 import { DataResponse } from "../../common/helpers/data-response"
@@ -12,7 +12,7 @@ const GetAllUsers = async() => {
     try {
         await prisma.$connect()
         const users = await prisma.user.findMany()
-        const safeusers = users.map((user: User) => {
+        const safeusers = users.map((user: any) => {
             const {password: _, ...safeuser} = user
             return safeuser
         })
